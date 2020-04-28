@@ -51,7 +51,7 @@ class ProposalPointTest extends TestCase
 
 
 
-        $response = $this->json("post","/api/proposal/point/update/".$this->proposal->id,[
+        $response = $this->postProposalPoint([
 
             "data" => [
                 [
@@ -66,7 +66,7 @@ class ProposalPointTest extends TestCase
                 ]
             ]
 
-        ]);
+        ],$this->proposal->id);
 
         $response->assertStatus(200);
 
@@ -77,8 +77,7 @@ class ProposalPointTest extends TestCase
     public function check_Proposal_point_invalid_propsal_id()
     {
 
-
-        $response = $this->json("post","/api/proposal/point/update/invalidPersonalId",[
+        $response = $this->postProposalPoint([
             "data" => [
                 [
                     "proposal_point_id" => $this->proposalPoint[0]->id,
@@ -92,7 +91,7 @@ class ProposalPointTest extends TestCase
                 ]
             ]
 
-        ]);
+        ],"invalidProposalId");
 
         $response->assertStatus(401);
 
@@ -105,7 +104,7 @@ class ProposalPointTest extends TestCase
     public function check_set_new_points_invalid_point()
     {
 
-        $response = $this->json("post","/api/proposal/point/update/".$this->proposal->id,[
+        $response = $this->postProposalPoint([
             "data" => [
                 [
                     "proposal_point_id" => $this->proposalPoint[0]->id,
@@ -119,7 +118,7 @@ class ProposalPointTest extends TestCase
                 ]
             ]
 
-        ]);
+        ],$this->proposal->id);
 
         $response->assertStatus(422);
     }
@@ -128,7 +127,7 @@ class ProposalPointTest extends TestCase
     public function check_set_new_points_require_criterion_id()
     {
 
-        $response = $this->json("post","/api/proposal/point/update/".$this->proposal->id,[
+        $response = $this->postProposalPoint([
             "data" => [
                 [
                     "proposal_point_id" => $this->proposalPoint[0]->id,
@@ -139,8 +138,12 @@ class ProposalPointTest extends TestCase
                 ]
             ]
 
-        ]);
+        ],$this->proposal->id);
         $response->assertStatus(402);
+    }
+
+    public function postProposalPoint($para,$poposalId){
+        return $this->json("post","/api/proposal/point/update/".$poposalId,$para);
     }
 
 }
