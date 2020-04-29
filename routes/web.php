@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Route;
-use App\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,13 +14,3 @@ use App\User;
 |
 */
 
-Route::get('/', function () {
-//    factory(User::class)->create();
-//    dd(env("DB_PASSWORD"));
-//    return User::get();
-    return view('welcome');
-});
-Route::post("/test",function (Request $request){
-    return $request->name[2];
-   return $request->all();
-});

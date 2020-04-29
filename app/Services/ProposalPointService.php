@@ -3,11 +3,13 @@
 
 namespace App\Services;
 
-use App\Custom\Validation\ProposalPointValidationInterface;
-use App\Custom\Validation\ProposalValidationInterface;
+
 use Auth;
 use Ramsey\Uuid\Type\Integer;
+use App\Custom\Validation\ProposalValidationInterface;
 use App\Repositories\ProposalPointrepositoryInterface;
+use App\Custom\Validation\ProposalPointValidationInterface;
+
 
 class ProposalPointService implements ProposalPointServiceInterface
 {

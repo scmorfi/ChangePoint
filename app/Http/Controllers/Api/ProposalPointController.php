@@ -2,25 +2,32 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Demand;
-use App\Services\ProposalPointServiceInterface;
 use Auth;
-use App\Criterion;
 use App\Http\Controllers\Controller;
-use App\Proposal;
-use App\ProposalPoint;
 use App\Http\Requests\StoreProposalPointPost;
-use Illuminate\Http\Request;
+use App\Services\ProposalPointServiceInterface;
+
 
 class ProposalPointController extends Controller
 {
     private $proposalPointService;
 
+    /**
+     *
+     * @param  \App\Services\ProposalPointServiceInterface  $proposalPointService
+     *
+     */
     public function __construct(ProposalPointServiceInterface $proposalPointService)
     {
         $this->proposalPointService = $proposalPointService;
     }
 
+    /**
+     *
+     * @param  \App\Http\Requests\StoreProposalPointPost  $request
+     * @param integer $proposalId
+     *
+     */
     public function update(StoreProposalPointPost $request, $proposalId){
         $this->proposalPointService->updateProposalPoint($request, $proposalId);
     }
